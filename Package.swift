@@ -1,4 +1,4 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 5.10
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -13,7 +13,7 @@ let package = Package(
             targets: ["Authenticator"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/aws-amplify/amplify-swift", from: "2.16.0"),
+        .package(url: "https://github.com/subdiox/amplify-swift", from: "2.34.2"),
     ],
     targets: [
         .target(
@@ -21,7 +21,9 @@ let package = Package(
             dependencies: [
                 .product(name: "Amplify", package: "amplify-swift"),
                 .product(name: "AWSCognitoAuthPlugin", package: "amplify-swift")
-            ]),
+            ],
+            swiftSettings: [.interoperabilityMode(.Cxx)]
+        ),
         .testTarget(
             name: "AuthenticatorTests",
             dependencies: ["Authenticator"]),
